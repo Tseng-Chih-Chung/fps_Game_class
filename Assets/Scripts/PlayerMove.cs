@@ -34,16 +34,16 @@ public class PlayerMove : MonoBehaviour
 
     private void Start()
     {
-        rbFirstPerson = GetComponent<Rigidbody>();
-        rbFirstPerson.freezeRotation = true;         // 不讓該物件隨意旋轉(讓它永遠保持正確的姿勢)
-        canJump = true;
-        isRun = false;
+        rbFirstPerson = GetComponent<Rigidbody>();   //取得該物件的Rigidbody組件
+        rbFirstPerson.freezeRotation = true;         //不讓該物件隨意旋轉(讓它永遠保持正確的姿勢)
+        canJump = true;                              //可以跳躍嗎?(true是可跳躍，fales是不可跳躍)
+        isRun = false;                               //是否正在跑步(true是正在跑，fales是沒在跑)
     }
 
     private void Update()
     {
-        MyInput();
-        SpeedControl();   // 偵測速度，過快就減速
+        MyInput();        //取得玩家輸入的按鍵/數值
+        SpeedControl();   //偵測速度，過快就減速
 
         // 射出一條看不到的射線，來判斷有沒有打到地面？
         isground = Physics.Raycast(transform.position, Vector3.down, checkHight * 0.5f + 0.3f, whatIsGround);
@@ -53,6 +53,8 @@ public class PlayerMove : MonoBehaviour
             rbFirstPerson.drag = groundDrag;
         else
             rbFirstPerson.drag = 0;
+
+        transform.rotation = Quaternion.Euler(0, PlayerCamera.GetComponent<PlayerCam>().yRotaiton, 0);  //讓角色模型的Y軸旋轉值跟攝影機的Y軸旋轉值一致
     }
 
     private void FixedUpdate()
