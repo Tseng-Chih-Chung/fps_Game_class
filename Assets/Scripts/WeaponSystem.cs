@@ -28,6 +28,9 @@ public class WeaponSystem : MonoBehaviour
     public TextMeshProUGUI ammunitionDisplay; // 彈量顯示
     public TextMeshProUGUI reloadingDisplay;  // 顯示是不是正在換彈夾？
 
+
+    Animator animator;
+
     private void Start()
     {
         bulletsLeft = magazineSize;        // 遊戲一開始彈夾設定為全滿狀態
@@ -36,12 +39,15 @@ public class WeaponSystem : MonoBehaviour
         ShowAmmoDisplay();                 // 更新彈量顯示
 
         fireTime = 0f; // 初始化fireTime
+
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         MyInput();
         if (fireTime > 0) fireTime -= Time.deltaTime;
+        ShowAmmoDisplay(); // 在每一幀都更新彈量顯示
     }
 
     // 方法：偵測玩家操作狀態
@@ -62,7 +68,7 @@ public class WeaponSystem : MonoBehaviour
         }
 
         // 判斷：1.有按下R鍵、2.子彈數量低於彈夾內的彈量、3.不是換彈夾的狀態，三個條件都滿足，就可以換彈夾
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading ||bulletsLeft==0)
+        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading || bulletsLeft == 0)
             Reload();
     }
 
@@ -85,14 +91,12 @@ public class WeaponSystem : MonoBehaviour
         GameObject currentBullet = Instantiate(bullet, FirePos.position, Quaternion.identity); // 在攻擊點上面產生一個子彈
         currentBullet.transform.forward = shootingDirection.normalized; // 將子彈飛行方向與射線方向一致
 
-        currentBullet.GetComponent<Rigidbody>().AddForce(currentBullet.transform.forward * 20, ForceMode.Impulse); // 依據飛行方向推送子彈
+        currentBullet.GetComponent<Rigidbody>().AddForce(currentBullet.transform.forward * 50, ForceMode.Impulse); // 依據飛行方向推送子彈
 
         bulletsLeft--;    // 將彈夾中的子彈減一
 
         // 後座力模擬
         PlayerRB.AddForce(-shootingDirection.normalized * recoilForce, ForceMode.Impulse);
-
-        ShowAmmoDisplay();                 // 更新彈量顯示
     }
 
     // 方法：換彈夾的延遲時間設定
@@ -101,6 +105,10 @@ public class WeaponSystem : MonoBehaviour
         reloading = true;                      // 首先將換彈夾狀態設定為：正在換彈夾
         reloadingDisplay.enabled = true;       // 將正在換彈夾的字幕顯示出來
         Invoke("ReloadFinished", reloadTime);  // 依照reloadTime所設定的換彈夾時間倒數，時間為0時執行ReloadFinished方法
+        if(animator != null)
+        {
+            animator.SetTrigger("Relording");
+        }
     }
 
     // 方法：換彈夾
@@ -109,7 +117,6 @@ public class WeaponSystem : MonoBehaviour
         bulletsLeft = magazineSize;            // 將子彈填滿
         reloading = false;                     // 將換彈夾狀態設定為：更換彈夾結束
         reloadingDisplay.enabled = false;      // 將正在換彈夾的字幕隱藏，結束換彈夾的動作
-        ShowAmmoDisplay();
     }
 
     // 方法：更新彈量顯示

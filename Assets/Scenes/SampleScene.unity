@@ -2963,13 +2963,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 72
   m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 2
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -3166,14 +3166,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerCam: {fileID: 963194227}
   FirePos: {fileID: 78879171}
+  PlayerRB: {fileID: 2041908768}
   bullet: {fileID: 4248685502937292073, guid: 32683c8085ebcab46970843684a52ff5, type: 3}
   magazineSize: 15
   bulletsLeft: 15
   reloadTime: 1
   recoilForce: 0.1
-  nextFireTime: 0.5
+  nextFireTime: 0.25
   ammunitionDisplay: {fileID: 1988597042}
   reloadingDisplay: {fileID: 989425503}
+--- !u!95 &1112570955
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112570949}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c7daf0ba0fd3bb343813da970d0411e1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1125195151
 GameObject:
   m_ObjectHideFlags: 0
@@ -3319,7 +3341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1866863028788630, guid: 5056d20a32324e1438d988478b9dc3e2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4968210953875670, guid: 5056d20a32324e1438d988478b9dc3e2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3395,12 +3417,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerCam: {fileID: 963194227}
   FirePos: {fileID: 177764172}
+  PlayerRB: {fileID: 2041908768}
   bullet: {fileID: 4248685502937292073, guid: 32683c8085ebcab46970843684a52ff5, type: 3}
   magazineSize: 10
   bulletsLeft: 10
   reloadTime: 2.5
   recoilForce: 0.2
-  nextFireTime: 0.5
+  nextFireTime: 0.3
   ammunitionDisplay: {fileID: 1988597042}
   reloadingDisplay: {fileID: 989425503}
 --- !u!1 &1146095373
@@ -3526,7 +3549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1188837925872254, guid: e8a167e3e5e548b4896befbd79964392, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1529454988328908, guid: e8a167e3e5e548b4896befbd79964392, type: 3}
       propertyPath: m_IsActive
@@ -3631,12 +3654,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerCam: {fileID: 963194227}
   FirePos: {fileID: 1133667587}
+  PlayerRB: {fileID: 2041908768}
   bullet: {fileID: 4248685502937292073, guid: 32683c8085ebcab46970843684a52ff5, type: 3}
   magazineSize: 150
   bulletsLeft: 150
   reloadTime: 5
-  recoilForce: 0.4
-  nextFireTime: 0.25
+  recoilForce: 0.5
+  nextFireTime: 0.1
   ammunitionDisplay: {fileID: 1988597042}
   reloadingDisplay: {fileID: 989425503}
 --- !u!1 &1163625407
@@ -6314,6 +6338,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4719690154862142, guid: 90742456b248a0a49a4ed1dcad74d4b4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4869858097322388, guid: 90742456b248a0a49a4ed1dcad74d4b4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.461
@@ -6365,6 +6393,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 78879171}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1643153634518648, guid: 90742456b248a0a49a4ed1dcad74d4b4, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 1112570955}
     - targetCorrespondingSourceObject: {fileID: 1643153634518648, guid: 90742456b248a0a49a4ed1dcad74d4b4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1112570954}
@@ -7008,7 +7039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1619436894274318, guid: 9e3364afdd9ba0048bc7169cf1c076b8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4833889617908870, guid: 9e3364afdd9ba0048bc7169cf1c076b8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7087,11 +7118,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerCam: {fileID: 963194227}
   FirePos: {fileID: 910818934}
+  PlayerRB: {fileID: 2041908768}
   bullet: {fileID: 4248685502937292073, guid: 32683c8085ebcab46970843684a52ff5, type: 3}
   magazineSize: 15
   bulletsLeft: 15
   reloadTime: 2
-  recoilForce: 0.5
+  recoilForce: 0.7
   nextFireTime: 0.75
   ammunitionDisplay: {fileID: 1988597042}
   reloadingDisplay: {fileID: 989425503}
@@ -7754,10 +7786,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 72
   m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
