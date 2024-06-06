@@ -14,6 +14,7 @@ public class WeaponSystem : MonoBehaviour
     public GameObject bullet;
 
     [Header("槍枝設定")]
+    public bool isGun;              //是否為槍?
     public int magazineSize;        // 設定彈夾可以放多少顆子彈？
     public int bulletsLeft;         // 子彈還有多少顆？(如果沒有要測試，你可以設定成 Private)
     public float reloadTime;        // 設定換彈夾所需要的時間
@@ -57,11 +58,20 @@ public class WeaponSystem : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             // 如果還有子彈，並且沒有正在重裝子彈，就可以射擊
-            if (bulletsLeft > 0 && !reloading)
+            if (isGun && bulletsLeft > 0 && !reloading)
             {
                 if (fireTime <= 0)
                 {
+                    animator.SetTrigger("Attack");
                     Shoot();
+                    fireTime = nextFireTime; // 重置fireTime
+                }
+            }
+            if(isGun !=true)
+            {
+                if (fireTime <= 0)
+                {
+                    animator.SetTrigger("Attack");
                     fireTime = nextFireTime; // 重置fireTime
                 }
             }
@@ -92,7 +102,6 @@ public class WeaponSystem : MonoBehaviour
         currentBullet.transform.forward = shootingDirection.normalized; // 將子彈飛行方向與射線方向一致
 
         currentBullet.GetComponent<Rigidbody>().AddForce(currentBullet.transform.forward * 50, ForceMode.Impulse); // 依據飛行方向推送子彈
-
         bulletsLeft--;    // 將彈夾中的子彈減一
 
         // 後座力模擬
