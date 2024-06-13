@@ -126,6 +126,10 @@ public class WeaponSystem : MonoBehaviour
         bulletsLeft = magazineSize;            // 將子彈填滿
         reloading = false;                     // 將換彈夾狀態設定為：更換彈夾結束
         reloadingDisplay.enabled = false;      // 將正在換彈夾的字幕隱藏，結束換彈夾的動作
+        if (animator != null)
+        {
+            animator.SetTrigger("No");
+        }
     }
 
     // 方法：更新彈量顯示

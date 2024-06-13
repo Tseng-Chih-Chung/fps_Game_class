@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1909064363165118111}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,9 +28,9 @@ Transform:
   m_GameObject: {fileID: 4248685502937292073}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0.0246}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4175777000594819060}
   m_Father: {fileID: 0}
@@ -76,7 +76,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4248685502937292073}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.25
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -121,7 +121,7 @@ Transform:
   m_GameObject: {fileID: 4628044827478252281}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0294, z: -0}
+  m_LocalPosition: {x: 0, y: 0.0453, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -179,7 +179,16 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.25297928
+        value: 0.3019868
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.24971008
+        value: 0.7509937
         inSlope: -0.4669237
         outSlope: -0.4669237
         tangentMode: 0
@@ -187,13 +196,13 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.24679114
       - serializedVersion: 3
-        time: 0.5005764
+        time: 0.9953247
         value: 0
-        inSlope: -0.027107412
-        outSlope: -0.027107412
+        inSlope: -0.000016680227
+        outSlope: -0.000016680227
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.39043432
+        inWeight: 0.4016299
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
