@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Destroy(gameObject,10f);
+        Destroy(gameObject,5f);
     }
 
     // Update is called once per frame
@@ -21,7 +21,14 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider != null)
+        if (collision.collider != null)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider != null)
         {
             Destroy(this.gameObject);
         }

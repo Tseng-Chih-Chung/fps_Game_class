@@ -77,9 +77,12 @@ public class WeaponSystem : MonoBehaviour
             }
         }
 
-        // 判斷：1.有按下R鍵、2.子彈數量低於彈夾內的彈量、3.不是換彈夾的狀態，三個條件都滿足，就可以換彈夾
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading || bulletsLeft == 0)
-            Reload();
+        if(!reloading)
+        {
+            // 判斷：1.有按下R鍵、2.子彈數量低於彈夾內的彈量、3.不是換彈夾的狀態，三個條件都滿足，就可以換彈夾
+            if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading || bulletsLeft == 0)
+                Reload();
+        }
     }
 
     // 方法：射擊武器
@@ -101,7 +104,7 @@ public class WeaponSystem : MonoBehaviour
         GameObject currentBullet = Instantiate(bullet, FirePos.position, Quaternion.identity); // 在攻擊點上面產生一個子彈
         currentBullet.transform.forward = shootingDirection.normalized; // 將子彈飛行方向與射線方向一致
 
-        currentBullet.GetComponent<Rigidbody>().AddForce(currentBullet.transform.forward * 50, ForceMode.Impulse); // 依據飛行方向推送子彈
+        currentBullet.GetComponent<Rigidbody>().AddForce(currentBullet.transform.forward * 25, ForceMode.Impulse); // 依據飛行方向推送子彈
         bulletsLeft--;    // 將彈夾中的子彈減一
 
         // 後座力模擬
@@ -111,6 +114,7 @@ public class WeaponSystem : MonoBehaviour
     // 方法：換彈夾的延遲時間設定
     private void Reload()
     {
+        bulletsLeft = 0;
         reloading = true;                      // 首先將換彈夾狀態設定為：正在換彈夾
         reloadingDisplay.enabled = true;       // 將正在換彈夾的字幕顯示出來
         Invoke("ReloadFinished", reloadTime);  // 依照reloadTime所設定的換彈夾時間倒數，時間為0時執行ReloadFinished方法

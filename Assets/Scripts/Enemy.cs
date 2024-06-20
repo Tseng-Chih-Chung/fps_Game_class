@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour
     public GameObject lifeBarImage;            // 設定敵人血條的圖片
     float lifeAmount;                          // 目前的生命值
 
+    [Header("玩家")]
+    public Transform Player;
+
     NavMeshAgent navMeshAgent;                 // 宣告NavMeshAgent物件
     GameObject targetObject = null;            // 目標物件的變數
 
@@ -25,6 +28,9 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        Vector3 direction = Player.position - lifeBarImage.transform.position;
+        lifeBarImage.transform.rotation = Quaternion.LookRotation(direction);
+        lifeBarImage.transform.rotation *= Quaternion.Euler(0, 180, 0);
         // 計算目標物件和自己的距離
         float distance = Vector3.Distance(transform.position, targetObject.transform.position);
 
@@ -50,11 +56,10 @@ public class Enemy : MonoBehaviour
     // 碰撞偵測
     private void OnCollisionEnter(Collision collision)
     {
-        // 如果碰到帶有Bullet標籤的物件，就要扣血，並且更新血條狀態
+        // 如果碰到帶有Bullet標籤的物件，就要扣血
         if (collision.gameObject.tag == "Bullet")
         {
             lifeAmount -= 1.0f;
-
             // 確保 lifeAmount 不小於 0
             lifeAmount = Mathf.Max(lifeAmount, 0);
 
